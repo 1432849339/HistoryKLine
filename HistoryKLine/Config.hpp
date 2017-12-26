@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include <map>
+#include <initializer_list>
 #include <fstream>
 #include <cstring>
 #include <iostream>
@@ -56,6 +57,14 @@ public:
 		});
 		return index != m_value.end() ? (*index).second : string();
 	}
+
+	void show()
+	{
+		for (auto &it:m_value)
+		{
+			cout << "key = " << it.first << "            value = " << it.second << endl;
+		}
+	}
 protected:
 private:
 	Config() :has_init(false)
@@ -66,6 +75,59 @@ private:
 	std::string								SoucePath;
 	std::string								QuotePath;
 	std::string								RequestPath;
+};
+
+
+class MyLog
+{
+public:
+	MyLog() {};
+
+	MyLog(string  log_name) {
+		_log_name = log_name;
+	}
+
+	~MyLog() {
+		if (fout.is_open())
+		{
+			fout.close();
+		}
+	}
+
+	bool  OpenLog() {
+		if (fout.is_open())
+		{
+			return true;
+		}
+		this->fout.open(_log_name);
+		if (!fout.is_open())
+		{
+			return false;
+		}
+		return true;
+	}
+
+	void SetTitle(initializer_list<string>& title) {
+		for (auto &it:title)
+		{
+			fout << it << ",";
+		}
+		fout << endl;
+	}
+
+	template<typename T,typename...Args>
+	void log2file(T& head, Args&&...args) {
+		fout << head << ",";
+		log2file(args...);
+	}
+protected:
+	template<typename T>
+	void log2file(T& head) {
+		fout << head << endl;
+	}
+private:
+	ofstream   fout;
+	string     _log_name;
 };
 #endif//!__CONFIG_H__
 

@@ -104,5 +104,11 @@ int64_t	GetUkey(std::string market, std::string code)
 			return 0;
 		}
 	}
+	//测试
+	/*if (info.ukey != 1114113)
+	{
+		return 0;
+	}*/
+
 	return info.ukey;
 }

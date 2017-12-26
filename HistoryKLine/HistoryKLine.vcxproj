@@ -51,7 +51,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
-    <RemoteRootDir>/home/dac/fengqianyong/History</RemoteRootDir>
+    <RemoteRootDir>/home/sds/fqy</RemoteRootDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -64,22 +64,24 @@
   <ItemGroup>
     <ClCompile Include="CreatePath.cpp" />
     <ClCompile Include="GetUkey.cpp" />
-    <ClCompile Include="KLine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="CreatePath.h" />
     <ClInclude Include="GetUkey.h" />
-    <ClInclude Include="KLine.h" />
+    <ClInclude Include="KLineDataDef.hpp" />
     <ClInclude Include="quote-1017-lxl.h" />
     <ClInclude Include="SDS20Struct-2017.h" />
+    <ClInclude Include="shm.h" />
+    <ClInclude Include="TempToKLine.hpp" />
     <ClInclude Include="ukey.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalLibraryDirectories>/home/dac/fengqianyong/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <LibraryDependencies>pthread; ukey; mysqlcppconn; kyotocabinet; bz2 </LibraryDependencies>
+      <AdditionalLibraryDirectories>/home/sds/fqy/Trans/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <LibraryDependencies>pthread; ukey; mysqlcppconn;shm</LibraryDependencies>
+      <AdditionalOptions>-Wl,-rpath=/home/sds/fqy/lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

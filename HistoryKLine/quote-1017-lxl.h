@@ -110,6 +110,7 @@ struct KLine
     int64_t ukey;                   // UKEY码
     int32_t trday;                  // 交易日20170301
     int64_t timeus;                 // UNIX时间戳（格林威治时间）1970年1月1日0时0分0秒到现在的微秒数
+	int32_t belong;
     int64_t open;                   // 开盘价
     int64_t high;                   // 最高价
     int64_t low;                    // 最低价
